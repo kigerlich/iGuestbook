@@ -1,4 +1,12 @@
 body {
   font-family: Verdana, Helvetica, sans-serif;
-  background-color: #DDDDDD;
+  background-color: #3498db;
+}
+
+.header {
+	background: url('http://data1.whicdn.com/images/59686689/large.jpg');
+	height: 100px;
+	width: 700px;
+	padding-top: 50px;
+	padding-left: 20px;
 }
