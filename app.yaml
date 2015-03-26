@@ -5,6 +5,8 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /datadog
+      script: gae_datadog.datadog.app
 - url: /stylesheets
   static_dir: stylesheets
 
@@ -16,3 +18,5 @@ libraries:
   version: latest
 - name: jinja2
   version: latest
+
+env_variables: DATADOG_API_KEY: '1ac8dd535ea78713c52711fe6cce1ceb'
