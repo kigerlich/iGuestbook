@@ -19,4 +19,5 @@ libraries:
 - name: jinja2
   version: latest
 
-env_variables: DATADOG_API_KEY: '1ac8dd535ea78713c52711fe6cce1ceb'
+env_variables:
+    DATADOG_API_KEY: '1ac8dd535ea78713c52711fe6cce1ceb'
