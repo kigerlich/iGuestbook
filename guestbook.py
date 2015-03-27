@@ -3,6 +3,7 @@ import urllib
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
+from datadog import statsd
 
 import jinja2
 import webapp2
@@ -42,6 +43,8 @@ def guestbook_key(guestbook_name=DEFAULT_GUESTBOOK_NAME):
     """
     return ndb.Key('Guestbook', guestbook_name)
 
+def render_page():
+    statsd.increment('web.page_views')
 
 class Author(ndb.Model):
     """Sub model for representing an author."""
