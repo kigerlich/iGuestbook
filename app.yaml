@@ -5,10 +5,12 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /datadog
-  script: gae_datadog.datadog.app
 - url: /stylesheets
   static_dir: stylesheets
+
+- url: /datadog
+  script: gae_datadog.datadog.app
+
 - url: /.*
   script: guestbook.application
 
@@ -20,5 +22,4 @@ libraries:
 
 env_variables:
     DATADOG_API_KEY: '1ac8dd535ea78713c52711fe6cce1ceb'
-
 
