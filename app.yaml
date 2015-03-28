@@ -9,7 +9,7 @@ handlers:
   static_dir: stylesheets
 
 - url: /datadog
-  script: gae_datadog.datadog.app
+  script: gae_datadog.datadog.application
 
 - url: /.*
   script: guestbook.application
