@@ -7,6 +7,24 @@ from google.appengine.ext import ndb
 import jinja2
 import webapp2
 
+# Configure the datadog module, making sure to initialize first
+#from datadog import initialize, api
+
+#options = {
+#    'api_key':'1ac8dd535ea78713c52711fe6cce1ceb',
+#    'app_key':'3734623b556d1a9e67671f21f7684041bdd8a82c'
+#}
+
+#initialize(**options)
+# Use Statsd, a Python client for DogStatsd
+#from datadog import statsd
+
+#def render_page():
+#    statsd.increment('web.page_views', tags=["page:home", "page:about", "page:portfolio", "page:contact"])
+
+# Create tags
+#api.Tag.create('host_with_the_most', ['support'])
+#api.Tag.create('host_with_the_most', ['page:home', 'page:about', 'page:portfolio', 'page:contact'])
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -42,6 +60,7 @@ def guestbook_key(guestbook_name=DEFAULT_GUESTBOOK_NAME):
     """
     return ndb.Key('Guestbook', guestbook_name)
 
+
 class Author(ndb.Model):
     """Sub model for representing an author."""
     identity = ndb.StringProperty(indexed=False)
@@ -58,6 +77,7 @@ class Greeting(ndb.Model):
 class MainPage(webapp2.RequestHandler):
 
     def get(self):
+
         guestbook_name = self.request.get('guestbook_name',
                                           DEFAULT_GUESTBOOK_NAME)
         greetings_query = Greeting.query(
@@ -82,6 +102,7 @@ class MainPage(webapp2.RequestHandler):
 
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render(template_values))
+        #render_page()
 
 class Guestbook(webapp2.RequestHandler):
     def post(self):
@@ -107,5 +128,5 @@ class Guestbook(webapp2.RequestHandler):
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/sign', Guestbook),
+    ('/sign', Guestbook)
 ], debug=True)
